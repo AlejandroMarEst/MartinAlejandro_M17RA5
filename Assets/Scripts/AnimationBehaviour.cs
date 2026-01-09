@@ -8,9 +8,12 @@ public class AnimationBehaviour : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
     }
-    public void RunAnimation(Vector3 velocity)
+    public void MoveAnimation(Vector3 velocity)
     {
-        Debug.Log("Heyyyyy");
         _animator.SetFloat("Velocity", velocity.magnitude);
+    }
+    public void RunAnimation(bool running)
+    {
+        _animator.SetBool("Running", running);
     }
 }

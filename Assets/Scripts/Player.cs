@@ -7,6 +7,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
 {
 	private InputSystem_Actions inputActions;
     private Vector3 _movement = Vector3.zero;
+    private bool _running = false;
     private void Awake()
     {
         base.Awake();
@@ -25,7 +26,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     {
         if (_movement != null)
         {
-            _mb.MoveCharacter(new Vector3(_movement.x, 0, _movement.y));
+            _mb.MoveCharacter(new Vector3(_movement.x, 0, _movement.y), _running);
         }
     }
     public void OnMove(InputAction.CallbackContext context)
@@ -54,6 +55,13 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     }
     public void OnSprint(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.performed)
+        {
+            _running = true;
+        }
+        else if (context.canceled)
+        {
+            _running = false;
+        }
     }
 }

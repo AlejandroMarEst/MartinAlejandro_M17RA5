@@ -7,20 +7,28 @@ public class MoveBehaviour : MonoBehaviour
     [SerializeField] private Transform cameraPosition;
     [SerializeField] private float movementSpeed = 5;
     [SerializeField] private float gravity = -2;
+    [SerializeField] private float turnSpeed = -2;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 		_charController = GetComponent<CharacterController>();
         _animController = GetComponentInChildren<AnimationBehaviour>();
+        Cursor.lockState = CursorLockMode.Locked;
     }
-
-	// Update is called once per frame
-	void FixedUpdate()
-    {
-    }
-	public void MoveCharacter(Vector3 direction)
+	public void MoveCharacter(Vector3 direction, bool running)
 	{
-        _charController.Move(direction * movementSpeed * Time.deltaTime);
-        _animController.RunAnimation(direction);
+        Vector3 forward = cameraPosition.forward;
+        forward.y = 0;
+        Vector3 right = cameraPosition.right;
+        right.y = 0;
+        Vector3 playerMovement = direction.x * right + direction.z * forward;
+        if (playerMovement.sqrMagnitude > 0.001)
+        {
+            Quaternion rotation = Quaternion.LookRotation(playerMovement);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, turnSpeed * Time.deltaTime);
+        }
+        _charController.Move(playerMovement * movementSpeed * Time.deltaTime);
+        _animController.MoveAnimation(direction);
+        _animController.RunAnimation(running);
     }
 }
