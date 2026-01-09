@@ -3,8 +3,7 @@ using UnityEngine;
 public class MoveBehaviour : MonoBehaviour
 {
 	private CharacterController _charController;
-    private AnimationController _animController;
-    private Vector3 velocity;
+    private AnimationBehaviour _animController;
     [SerializeField] private Transform cameraPosition;
     [SerializeField] private float movementSpeed = 5;
     [SerializeField] private float gravity = -2;
@@ -12,8 +11,8 @@ public class MoveBehaviour : MonoBehaviour
     void Start()
     {
 		_charController = GetComponent<CharacterController>();
-        _animController = GetComponent<AnimationController>();
-	}
+        _animController = GetComponentInChildren<AnimationBehaviour>();
+    }
 
 	// Update is called once per frame
 	void FixedUpdate()
@@ -21,8 +20,7 @@ public class MoveBehaviour : MonoBehaviour
     }
 	public void MoveCharacter(Vector3 direction)
 	{
-		Vector3 movement = new Vector3(direction.x, 0, direction.z);
-        _charController.Move(movement * movementSpeed * Time.deltaTime);
+        _charController.Move(direction * movementSpeed * Time.deltaTime);
         _animController.RunAnimation(direction);
     }
 }

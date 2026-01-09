@@ -1,7 +1,7 @@
 using UnityEngine;
 [RequireComponent(typeof(Animator))]
 
-public class AnimationController : MonoBehaviour
+public class AnimationBehaviour : MonoBehaviour
 {
     private Animator _animator;
     void Awake()
@@ -10,6 +10,7 @@ public class AnimationController : MonoBehaviour
     }
     public void RunAnimation(Vector3 velocity)
     {
+        Debug.Log("Heyyyyy");
         _animator.SetFloat("Velocity", velocity.magnitude);
     }
 }

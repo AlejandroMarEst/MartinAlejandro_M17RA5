@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 [RequireComponent(typeof(MoveBehaviour))]
@@ -5,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Player : Character, InputSystem_Actions.IPlayerActions
 {
 	private InputSystem_Actions inputActions;
-    private Vector2 _movement;
+    private Vector3 _movement = Vector3.zero;
     private void Awake()
     {
         base.Awake();
@@ -20,11 +21,13 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
 	{
 		inputActions.Disable();
 	}
-	void  FixedUpdate()
+    void FixedUpdate()
     {
-        _mb.MoveCharacter(new Vector3(_movement.x, 0, _movement.y));
+        if (_movement != null)
+        {
+            _mb.MoveCharacter(new Vector3(_movement.x, 0, _movement.y));
+        }
     }
-
     public void OnMove(InputAction.CallbackContext context)
     {
         _movement = context.ReadValue<Vector2>();
