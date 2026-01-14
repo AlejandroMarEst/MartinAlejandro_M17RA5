@@ -17,12 +17,8 @@ public class MoveBehaviour : MonoBehaviour
     }
 	public void MoveCharacter(Vector3 direction, bool running)
 	{
-        Vector3 forward = cameraPosition.forward;
-        forward.y = 0;
-        Vector3 right = cameraPosition.right;
-        right.y = 0;
-        Vector3 playerMovement = direction.x * right + direction.z * forward;
-        if (playerMovement.sqrMagnitude > 0.001)
+        Vector3 playerMovement = direction.x * transform.right + direction.z * transform.forward;
+        if (playerMovement.sqrMagnitude > 0.001 && direction.z > -0.1f)
         {
             Quaternion rotation = Quaternion.LookRotation(playerMovement);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, turnSpeed * Time.deltaTime);
@@ -30,5 +26,9 @@ public class MoveBehaviour : MonoBehaviour
         _charController.Move(playerMovement * movementSpeed * Time.deltaTime);
         _animController.MoveAnimation(direction);
         _animController.RunAnimation(running);
+    }
+    public void RotateCharacter(Quaternion rotation)
+    {
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, turnSpeed * Time.deltaTime);
     }
 }

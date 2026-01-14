@@ -5,8 +5,11 @@ using UnityEngine.InputSystem;
 
 public class Player : Character, InputSystem_Actions.IPlayerActions
 {
-	private InputSystem_Actions inputActions;
-    private Vector3 _movement = Vector3.zero;
+    [SerializeField] float mouseSensitivity = 2.5f;
+    private InputSystem_Actions inputActions;
+    private Vector3 _movement;
+    private float _lookX;
+    private float _lookY;
     private bool _running = false;
     private void Awake()
     {
@@ -35,7 +38,9 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     }
     public void OnLook(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        Vector2 mouse = context.ReadValue<Vector2>();
+        _lookX += mouse.x * mouseSensitivity;
+        _lookY -= mouse.y * mouseSensitivity;
     }
     public void OnAttack(InputAction.CallbackContext context)
     {
