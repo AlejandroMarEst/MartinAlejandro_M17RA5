@@ -206,8 +206,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.094960175, y: -0.12162273, z: 0.01169013, w: 0.9879544}
-  m_LocalPosition: {x: 0.5, y: 1.9, z: -2}
+  m_LocalRotation: {x: 0.10464118, y: 0, z: 0, w: 0.99451005}
+  m_LocalPosition: {x: 0, y: 2.2, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -871,7 +871,7 @@ MonoBehaviour:
   cameraPosition: {fileID: 1976423588}
   movementSpeed: 5
   gravity: -2
-  turnSpeed: 2
+  turnSpeed: 1
 --- !u!114 &1196729307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,7 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f2afa632c647849a941e580d1782f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  mouseSensitivity: 2.5
+  mouseSensitivity: 0.1
 --- !u!1 &1229488314
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,8 +895,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1229488317}
   - component: {fileID: 1229488316}
-  - component: {fileID: 1229488319}
+  - component: {fileID: 1229488320}
   - component: {fileID: 1229488318}
+  - component: {fileID: 1229488319}
   m_Layer: 0
   m_Name: CinemachineCamera (1)
   m_TagString: Untagged
@@ -955,8 +956,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229488314}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.18395616, y: -0.107232034, z: 0.020193283, w: 0.9768591}
-  m_LocalPosition: {x: 0.5, y: 2.4, z: -2.25}
+  m_LocalRotation: {x: 0.04362161, y: 0, z: 0, w: 0.9990482}
+  m_LocalPosition: {x: 0, y: 2.15, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -975,7 +976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
   Composition:
-    ScreenPosition: {x: 0, y: 0}
+    ScreenPosition: {x: 0, y: 0.2}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -1000,11 +1001,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1229488314}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89875cdc57c54474a8a74efd9b2a3b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineInputAxisController
+  ScanRecursively: 1
+  SuppressInputWhileBlending: 1
+  IgnoreTimeScale: 0
+  m_ControllerManager:
+    Controllers: []
+  PlayerIndex: -1
+  AutoEnableInputs: 1
+--- !u!114 &1229488320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229488314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 625c14eee3ad46c99df7c7c891ef668a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineThirdPersonFollow
   Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 0.5, y: 2, z: -0.25}
+  ShoulderOffset: {x: 0, y: 1.75, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
   CameraDistance: 2
@@ -1140,8 +1160,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1914791135}
   - component: {fileID: 1914791134}
+  - component: {fileID: 1914791140}
+  - component: {fileID: 1914791139}
   - component: {fileID: 1914791137}
-  - component: {fileID: 1914791136}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -1165,7 +1186,7 @@ MonoBehaviour:
     Enabled: 0
     m_Value: 0
   OutputChannel: 1
-  StandbyUpdate: 2
+  StandbyUpdate: 1
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
@@ -1200,14 +1221,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1914791132}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.094960175, y: -0.12162273, z: 0.01169013, w: 0.9879544}
-  m_LocalPosition: {x: 0.5, y: 1.9, z: -2}
+  m_LocalRotation: {x: 0.10464118, y: 0, z: 0, w: 0.99451005}
+  m_LocalPosition: {x: 0, y: 2.2, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1976423588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1914791136
+--- !u!114 &1914791137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914791132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89875cdc57c54474a8a74efd9b2a3b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineInputAxisController
+  ScanRecursively: 1
+  SuppressInputWhileBlending: 1
+  IgnoreTimeScale: 0
+  m_ControllerManager:
+    Controllers: []
+  PlayerIndex: -1
+  AutoEnableInputs: 1
+--- !u!114 &1914791139
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1220,7 +1260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
   Composition:
-    ScreenPosition: {x: 0, y: 0}
+    ScreenPosition: {x: 0, y: 0.2}
     DeadZone:
       Enabled: 0
       Size: {x: 0.2, y: 0.2}
@@ -1236,7 +1276,7 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
---- !u!114 &1914791137
+--- !u!114 &1914791140
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1249,7 +1289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineThirdPersonFollow
   Damping: {x: 0.1, y: 0.5, z: 0.3}
-  ShoulderOffset: {x: 0.5, y: 1.5, z: 0}
+  ShoulderOffset: {x: 0, y: 1.8, z: 0.5}
   VerticalArmLength: 0.4
   CameraSide: 1
   CameraDistance: 2

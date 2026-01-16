@@ -8,8 +8,8 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     [SerializeField] float mouseSensitivity = 2.5f;
     private InputSystem_Actions inputActions;
     private Vector3 _movement;
-    private float _lookX;
-    private float _lookY;
+    private Vector2 _lookInput;
+    private float _yaw;
     private bool _running = false;
     private void Awake()
     {
@@ -25,12 +25,16 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
 	{
 		inputActions.Disable();
 	}
+    void Update()
+    {
+    }
     void FixedUpdate()
     {
-        if (_movement != null)
-        {
-            _mb.MoveCharacter(new Vector3(_movement.x, 0, _movement.y), _running);
-        }
+        _yaw += _lookInput.x * mouseSensitivity;
+        _mb.RotateCharacter(Quaternion.Euler(0f, _yaw, 0f));
+
+        // Movement
+        _mb.MoveCharacter(new Vector3(_movement.x, 0f, _movement.y), _running);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -38,9 +42,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     }
     public void OnLook(InputAction.CallbackContext context)
     {
-        Vector2 mouse = context.ReadValue<Vector2>();
-        _lookX += mouse.x * mouseSensitivity;
-        _lookY -= mouse.y * mouseSensitivity;
+        _lookInput = context.ReadValue<Vector2>();
     }
     public void OnAttack(InputAction.CallbackContext context)
     {
@@ -69,4 +71,6 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
             _running = false;
         }
     }
+
+    
 }
