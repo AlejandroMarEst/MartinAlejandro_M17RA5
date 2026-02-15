@@ -58,4 +58,8 @@ public class MoveBehaviour : MonoBehaviour
     {
         _animController.Aiming(aiming);
     }
+    public void Attack()
+    {
+        _animController.Attack();
+    }
 }

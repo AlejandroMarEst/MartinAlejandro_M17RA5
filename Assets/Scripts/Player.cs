@@ -49,7 +49,10 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     }
     public void OnAttack(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.performed)
+        {
+            _mb.Attack();
+        }
     }
     public void OnInteract(InputAction.CallbackContext context)
     {

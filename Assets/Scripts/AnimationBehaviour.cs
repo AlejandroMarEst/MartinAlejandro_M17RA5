@@ -32,4 +32,7 @@ public class AnimationBehaviour : MonoBehaviour
     {
         _animator.SetBool("Aiming", aim);
     }
+    public void Attack() {
+        _animator.SetTrigger("Punch");
+    }
 }
