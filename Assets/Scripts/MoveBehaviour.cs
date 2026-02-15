@@ -54,4 +54,8 @@ public class MoveBehaviour : MonoBehaviour
             _animController.Jump();
         }
     }
+    public void Aim(bool aiming)
+    {
+        _animController.Aiming(aiming);
+    }
 }

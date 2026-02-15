@@ -12,6 +12,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     private bool _jumpRequested;
     private float _yaw;
     private bool _running = false;
+    private bool _aiming = false;
     private void Awake()
     {
         base.Awake();
@@ -31,6 +32,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
         _yaw += _lookInput.x * mouseSensitivity;
         _mb.RotateCharacter(Quaternion.Euler(0f, _yaw, 0f));
         _mb.MoveCharacter(new Vector3(_movement.x, 0f, _movement.y), _running);
+        _mb.Aim(_aiming);
         if (_jumpRequested)
         {
             _mb.Jump();
@@ -51,7 +53,14 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     }
     public void OnInteract(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.performed)
+        {
+            _aiming = true;
+        }
+        else if (context.canceled)
+        {
+            _aiming = false;
+        }
     }
     public void OnCrouch(InputAction.CallbackContext context)
     {

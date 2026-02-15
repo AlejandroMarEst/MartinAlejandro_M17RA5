@@ -21,12 +21,15 @@ public class AnimationBehaviour : MonoBehaviour
     }
     public void Fall(float verticalVelocity)
     {
-        Debug.Log(verticalVelocity);
         _animator.SetFloat("VerticalVelocity", verticalVelocity);
         _animator.SetBool("Grounded", false);
     }
     public void Grounded()
     {
         _animator.SetBool("Grounded", true);
+    }
+    public void Aiming(bool aim)
+    {
+        _animator.SetBool("Aiming", aim);
     }
 }
