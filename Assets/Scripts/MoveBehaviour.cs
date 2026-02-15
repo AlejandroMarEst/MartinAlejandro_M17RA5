@@ -5,6 +5,7 @@ public class MoveBehaviour : MonoBehaviour
 	private CharacterController _charController;
     private AnimationBehaviour _animController;
     private Vector3 velocity;
+    private Vector3 _horizontalMove;
     [SerializeField] private Transform cameraPosition;
     [SerializeField] private float jumpHeight;
     [SerializeField] private float movementSpeed = 5;
@@ -23,20 +24,21 @@ public class MoveBehaviour : MonoBehaviour
             velocity.y = -0.5f;
         }
         velocity.y += gravity * Time.deltaTime;
-        _charController.Move(velocity * Time.deltaTime);
+        Vector3 finalMove = _horizontalMove * movementSpeed + velocity;
+        _charController.Move(finalMove * Time.deltaTime);
         if (!_charController.isGrounded)
         {
             _animController.Fall(velocity.y);
-        } else
+        }
+        else
         {
             _animController.Grounded();
         }
     }
     public void MoveCharacter(Vector3 direction, bool running)
-	{
-        Vector3 playerMovement = direction.x * transform.right + direction.z * transform.forward;
-        playerMovement.y = 0;
-        _charController.Move(playerMovement * movementSpeed * Time.deltaTime);
+    {
+        _horizontalMove = direction.x * transform.right + direction.z * transform.forward;
+        _horizontalMove.y = 0;
         _animController.MoveAnimation(direction);
         _animController.RunAnimation(running);
     }

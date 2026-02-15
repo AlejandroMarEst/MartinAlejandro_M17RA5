@@ -9,6 +9,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     private InputSystem_Actions inputActions;
     private Vector3 _movement;
     private Vector2 _lookInput;
+    private bool _jumpRequested;
     private float _yaw;
     private bool _running = false;
     private void Awake()
@@ -27,14 +28,14 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
 	}
     void Update()
     {
-    }
-    void FixedUpdate()
-    {
         _yaw += _lookInput.x * mouseSensitivity;
         _mb.RotateCharacter(Quaternion.Euler(0f, _yaw, 0f));
-
-        // Movement
         _mb.MoveCharacter(new Vector3(_movement.x, 0f, _movement.y), _running);
+        if (_jumpRequested)
+        {
+            _mb.Jump();
+            _jumpRequested = false;
+        }
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -58,7 +59,10 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     }
     public void OnJump(InputAction.CallbackContext context)
     {
-        _mb.Jump();
+        if (context.performed)
+        {
+            _jumpRequested = true;
+        }
     }
     public void OnSprint(InputAction.CallbackContext context)
     {
