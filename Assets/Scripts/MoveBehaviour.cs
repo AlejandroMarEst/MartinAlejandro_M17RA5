@@ -4,18 +4,35 @@ public class MoveBehaviour : MonoBehaviour
 {
 	private CharacterController _charController;
     private AnimationBehaviour _animController;
+    private Vector3 velocity;
     [SerializeField] private Transform cameraPosition;
+    [SerializeField] private float jumpHeight;
     [SerializeField] private float movementSpeed = 5;
-    [SerializeField] private float gravity = -2;
+    [SerializeField] private float gravity = -10f;
     [SerializeField] private float turnSpeed = -2;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
 		_charController = GetComponent<CharacterController>();
         _animController = GetComponentInChildren<AnimationBehaviour>();
         Cursor.lockState = CursorLockMode.Locked;
     }
-	public void MoveCharacter(Vector3 direction, bool running)
+    private void Update()
+    {
+        if (_charController.isGrounded && velocity.y < 0)
+        {
+            velocity.y = -0.5f;
+        }
+        velocity.y += gravity * Time.deltaTime;
+        _charController.Move(velocity * Time.deltaTime);
+        if (!_charController.isGrounded)
+        {
+            _animController.Fall(velocity.y);
+        } else
+        {
+            _animController.Grounded();
+        }
+    }
+    public void MoveCharacter(Vector3 direction, bool running)
 	{
         Vector3 playerMovement = direction.x * transform.right + direction.z * transform.forward;
         playerMovement.y = 0;
@@ -26,5 +43,13 @@ public class MoveBehaviour : MonoBehaviour
     public void RotateCharacter(Quaternion rotation)
     {
         transform.rotation = rotation;
+    }
+    public void Jump()
+    {
+        if (_charController.isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            _animController.Jump();
+        }
     }
 }

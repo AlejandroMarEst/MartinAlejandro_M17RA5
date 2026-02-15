@@ -16,4 +16,17 @@ public class AnimationBehaviour : MonoBehaviour
     {
         _animator.SetBool("Running", running);
     }
+    public void Jump() {
+        _animator.SetBool("Jumping", true);
+    }
+    public void Fall(float verticalVelocity)
+    {
+        Debug.Log(verticalVelocity);
+        _animator.SetFloat("VerticalVelocity", verticalVelocity);
+        _animator.SetBool("Grounded", false);
+    }
+    public void Grounded()
+    {
+        _animator.SetBool("Grounded", true);
+    }
 }

@@ -962,6 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoveBehaviour
   cameraPosition: {fileID: 1976423588}
+  jumpHeight: 3
   movementSpeed: 5
   gravity: -2
   turnSpeed: 1

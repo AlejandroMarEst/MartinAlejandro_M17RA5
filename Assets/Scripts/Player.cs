@@ -58,7 +58,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     }
     public void OnJump(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        _mb.Jump();
     }
     public void OnSprint(InputAction.CallbackContext context)
     {
