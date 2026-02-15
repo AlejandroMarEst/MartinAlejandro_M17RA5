@@ -1,3 +1,5 @@
+using NUnit.Framework.Internal.Execution;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,6 +8,9 @@ using UnityEngine.InputSystem;
 public class Player : Character, InputSystem_Actions.IPlayerActions
 {
     [SerializeField] float mouseSensitivity = 2.5f;
+    [SerializeField] private float interactDistance = 2.5f;
+    [SerializeField] private LayerMask interactMask;
+    private WorldItem _currentItem;
     private InputSystem_Actions inputActions;
     private Vector3 _movement;
     private Vector2 _lookInput;
@@ -33,6 +38,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
         _mb.RotateCharacter(Quaternion.Euler(0f, _yaw, 0f));
         _mb.MoveCharacter(new Vector3(_movement.x, 0f, _movement.y), _running);
         _mb.Aim(_aiming);
+        CheckInteractable();
         if (_jumpRequested)
         {
             _mb.Jump();
@@ -54,7 +60,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
             _mb.Attack();
         }
     }
-    public void OnInteract(InputAction.CallbackContext context)
+    public void OnAim(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -87,6 +93,34 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
             _running = false;
         }
     }
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            if (_currentItem != null)
+            {
+                _currentItem.OnPickedUp(this);
+            }
+        }
+    }
+    void CheckInteractable()
+    {
+        _currentItem = null;
 
-    
+        Vector3 origin = transform.position + Vector3.up * 1.5f;
+        Vector3 dir = transform.forward;
+
+        Debug.DrawRay(origin, dir * interactDistance, Color.red);
+
+        if (Physics.Raycast(origin, dir, out RaycastHit hit, interactDistance, interactMask))
+        {
+            Debug.Log("Hit: " + hit.collider.name);
+
+            _currentItem = hit.collider.GetComponent<WorldItem>();
+
+            if (_currentItem != null)
+                Debug.Log("WorldItem detected");
+        }
+    }
+
 }
