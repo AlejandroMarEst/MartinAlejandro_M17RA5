@@ -2472,6 +2472,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 021507eeb8ce91a4a9d425df5e613d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationBehaviour
+--- !u!1001 &1049432481
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.785
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.707
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 212.89383
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99598664
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.089502685
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 10.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684144092772470755, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596347688725158342, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
+      propertyPath: m_Name
+      value: Mirror
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8d2b8355ad1add240b731f600684ad14, type: 3}
 --- !u!4 &1057152108 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3321919801592875672, guid: d87eb72a8251bfe4f8506d082ace50e9, type: 3}
@@ -2703,7 +2764,7 @@ MonoBehaviour:
   cameraPosition: {fileID: 1976423588}
   jumpHeight: 3
   movementSpeed: 8
-  gravity: -1.72
+  gravity: 2.72
   turnSpeed: 1
 --- !u!114 &1196729307
 MonoBehaviour:
@@ -9570,3 +9631,4 @@ SceneRoots:
   - {fileID: 2067293749}
   - {fileID: 429138478}
   - {fileID: 514146354}
+  - {fileID: 1049432481}
