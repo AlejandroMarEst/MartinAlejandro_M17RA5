@@ -10,7 +10,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     [SerializeField] float mouseSensitivity = 2.5f;
     [SerializeField] private float interactDistance = 2.5f;
     [SerializeField] private LayerMask interactMask;
-    private WorldItem _currentItem;
+    private IInteractable _currentInteractable;
     private InputSystem_Actions inputActions;
     private Vector3 _movement;
     private Vector2 _lookInput;
@@ -97,30 +97,23 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     {
         if (context.performed)
         {
-            if (_currentItem != null)
-            {
-                _currentItem.OnPickedUp(this);
-            }
+            _currentInteractable?.Interact(this);
         }
     }
     void CheckInteractable()
     {
-        _currentItem = null;
-
+        _currentInteractable = null;
         Vector3 origin = transform.position + Vector3.up * 1.5f;
         Vector3 dir = transform.forward;
-
         Debug.DrawRay(origin, dir * interactDistance, Color.red);
-
         if (Physics.Raycast(origin, dir, out RaycastHit hit, interactDistance, interactMask))
         {
-            Debug.Log("Hit: " + hit.collider.name);
-
-            _currentItem = hit.collider.GetComponent<WorldItem>();
-
-            if (_currentItem != null)
-                Debug.Log("WorldItem detected");
+            var interactable = hit.collider.GetComponentInParent<IInteractable>();
+            if (interactable != null)
+            {
+                _currentInteractable = interactable;
+                Debug.Log("Interactable detected: " + hit.collider.name);
+            }
         }
     }
-
 }
