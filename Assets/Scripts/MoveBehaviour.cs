@@ -62,4 +62,8 @@ public class MoveBehaviour : MonoBehaviour
     {
         _animController.Attack();
     }
+    public void Dance(bool dance)
+    {
+        _animController.Dance(dance);
+    }
 }

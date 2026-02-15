@@ -16,6 +16,7 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     private Vector2 _lookInput;
     private bool _jumpRequested;
     private float _yaw;
+    private bool _dancing = false;
     private bool _running = false;
     private bool _aiming = false;
     private void Awake()
@@ -44,10 +45,12 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
             _mb.Jump();
             _jumpRequested = false;
         }
+        _mb.Dance(_dancing);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
         _movement = context.ReadValue<Vector2>();
+        _dancing = false;
     }
     public void OnLook(InputAction.CallbackContext context)
     {
@@ -57,11 +60,13 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     {
         if (context.performed)
         {
+            _dancing = false;
             _mb.Attack();
         }
     }
     public void OnAim(InputAction.CallbackContext context)
     {
+        _dancing = false;
         if (context.performed)
         {
             _aiming = true;
@@ -73,10 +78,14 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     }
     public void OnCrouch(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.performed)
+        {
+            _dancing = true;
+        }
     }
     public void OnJump(InputAction.CallbackContext context)
     {
+        _dancing = false;
         if (context.performed)
         {
             _jumpRequested = true;

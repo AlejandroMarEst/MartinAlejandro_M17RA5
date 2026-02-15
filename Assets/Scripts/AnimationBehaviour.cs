@@ -35,4 +35,8 @@ public class AnimationBehaviour : MonoBehaviour
     public void Attack() {
         _animator.SetTrigger("Punch");
     }
+    public void Dance(bool dance)
+    {
+        _animator.SetBool("Dancing", dance);
+    }
 }
