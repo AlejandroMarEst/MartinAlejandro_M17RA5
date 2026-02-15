@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179e2ac6558564a4a9494b69a90c1602, type: 3}
   m_Name: Dagger
   m_EditorClassIdentifier: Assembly-CSharp::EquippableItem
-  itemName: 
+  itemName: Dagger
   itemType: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 5458737265024032779, guid: ea816f7cece47574da091aaf86ab56f4, type: 3}

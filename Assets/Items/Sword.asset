@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179e2ac6558564a4a9494b69a90c1602, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::EquippableItem
-  itemName: 
+  itemName: Sword
   itemType: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 355312524381552382, guid: b84d7ca3927758646a65731cc107aa76, type: 3}
