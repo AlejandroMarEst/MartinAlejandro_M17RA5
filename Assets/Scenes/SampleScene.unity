@@ -2764,7 +2764,7 @@ MonoBehaviour:
   cameraPosition: {fileID: 1976423588}
   jumpHeight: 3
   movementSpeed: 8
-  gravity: 2.72
+  gravity: -6.18
   turnSpeed: 1
 --- !u!114 &1196729307
 MonoBehaviour:
