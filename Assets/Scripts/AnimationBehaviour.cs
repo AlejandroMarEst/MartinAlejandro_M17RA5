@@ -38,5 +38,6 @@ public class AnimationBehaviour : MonoBehaviour
     public void Dance(bool dance)
     {
         _animator.SetBool("Dancing", dance);
+        _animator.SetBool("Emote", dance);
     }
 }

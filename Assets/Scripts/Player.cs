@@ -36,7 +36,10 @@ public class Player : Character, InputSystem_Actions.IPlayerActions
     void Update()
     {
         _yaw += _lookInput.x * mouseSensitivity;
-        _mb.RotateCharacter(Quaternion.Euler(0f, _yaw, 0f));
+        if (!_dancing)
+        {
+            _mb.RotateCharacter(Quaternion.Euler(0f, _yaw, 0f));
+        }
         _mb.MoveCharacter(new Vector3(_movement.x, 0f, _movement.y), _running);
         _mb.Aim(_aiming);
         CheckInteractable();
